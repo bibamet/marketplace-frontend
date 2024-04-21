@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import { AuthProvider } from "@/context/AuthContext";
+import { DayPickerProvider } from "react-day-picker";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <AuthProvider>
+        <body className={cn(inter.className)}>
+          {/* // "flex",
+          // "justify-center",
+          // "align-middle",
+          // "mt-[1rem]")}> */}
+          {children}
+          <Toaster />
+        </body>
+      </AuthProvider >
     </html>
   );
 }
